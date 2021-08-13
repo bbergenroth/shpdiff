@@ -54,6 +54,13 @@ func main() {
 		os.Exit(1)
 	}
 
+	var diffshp string
+	if flag.Arg(2) != "" {
+		diffshp = flag.Arg(2)
+	} else {
+		diffshp = "diff.shp"
+	}
+
 	oldshp, err := shp.Open(flag.Arg(1))
 	if err != nil {
 		log.Fatal(err)
@@ -95,7 +102,7 @@ func main() {
 		}
 	}
 	//write diff
-	d, err := shp.Create("diff.shp", t)
+	d, err := shp.Create(diffshp, t)
 	if err != nil {
 		log.Fatal(err)
 	}
